@@ -141,6 +141,9 @@ func (EoteRoller) Roll(matches []string) (RollResult, error) {
 		if err != nil {
 			continue
 		}
+		if num > MaxLoop {
+			return res, ErrTooManyLoops
+		}
 
 		choices, ok := eoteDice[parts[2]]
 		if !ok {

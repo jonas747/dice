@@ -38,6 +38,9 @@ func (VsRoller) Roll(matches []string) (RollResult, error) {
 	if dice < 1 {
 		return nil, errors.New("Count must be 1 or more")
 	}
+	if dice > MaxLoop {
+		return nil, ErrTooManyLoops
+	}
 
 	sides, err := strconv.ParseInt(matches[2], 10, 0)
 	if err != nil {
@@ -45,6 +48,9 @@ func (VsRoller) Roll(matches []string) (RollResult, error) {
 	}
 	if sides < 2 {
 		return nil, errors.New("Sides must be 2 or more")
+	}
+	if sides > MaxLoop {
+		return nil, ErrTooManyLoops
 	}
 
 	explode := matches[3] == "e"

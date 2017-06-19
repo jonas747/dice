@@ -7,6 +7,14 @@ import (
 	"strings"
 )
 
+var (
+	MaxLoop int64 = 1000
+)
+
+var (
+	ErrTooManyLoops = errors.New("Too many loops, you either specified too many dices or sides")
+)
+
 type RollResult interface {
 	fmt.Stringer
 	Description() string
